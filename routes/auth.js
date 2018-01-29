@@ -18,9 +18,14 @@ router.post('/login',function(req, res, next) {
     if(user){
       let success=encrypt.comparePassword(req.body.password,user.password)
         if(success){
-          req.session.login = true
-          req.session.user = user
-          res.redirect('/users')
+          if(user.status==0){
+            res.flash('Email anda belum tervalidasi, silahkan cek email')
+            res.redirect('/auth/login')
+          }else{
+            req.session.login = true
+            req.session.user = user
+            res.redirect('/users')
+          }
         }else{
           res.flash('Password anda salah')
           res.redirect('/auth/login')

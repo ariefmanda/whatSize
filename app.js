@@ -26,9 +26,10 @@ app.use(function(req,res,next){
   res.locals.login=req.session.login
   next()
 })
-app.use('/', index);
+
 app.use('/auth', auth);
 app.use('/users', users);
+app.use('/', index);
 // catch 404 and forward to error handler
 app.use('*',(req,res,next)=>{
   res.flash('Situs tidak ditemukan')
