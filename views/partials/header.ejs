@@ -10,13 +10,13 @@
 <head>
   <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css" async />
   <style>
-    body {
+    /* body {
       width: 80%;
       float: none;
       margin: auto;
       background: #efefef;
       padding-top: 10px;
-    }
+    } */
 
     input,
     select {
@@ -30,16 +30,6 @@
     form>input:last-child {
       margin-top: 15px !important;
     }
-
-    label {
-      line-height: 2em;
-      margin-bottom: 5px
-    }
-
-    h2 {
-      text-transform: uppercase;
-      font-weight: lighter
-    }
   </style>
 </head>
 
@@ -50,10 +40,15 @@
       <br>SIZE
     </div>
     <a class="link item" href="/">Home</a>
+    <% if (login) { %>
+      <a class="link item" href="/transactions">Transactions</a>
+    <% } %>
     <div class="right menu">
+      <% if (!login) { %>
       <a href="/users/add" class="ui item">
         Register
       </a>
+      <% } %>
         <% if (login) { %>
           <a href="/auth/logout" class="ui item">
           Logout

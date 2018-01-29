@@ -1,0 +1,27 @@
+<%- include('./partials/header')%>
+<h3><a class="ui right floated teal button" href="/transaction/add">Add Transaction</a></h3><br>
+<br>
+<table class="ui celled compact table">
+ <thead>
+   <th>Date (GMT)</th>
+   <th>Name User</th>
+   <th>Name Item</th>
+   <th>Actions</th>
+ </thead>
+ <tbody>
+     <% for(let transaction of transactions) {%>
+       <tr>
+         <td> <%= transaction.createdAt %> </td>
+         <td><%= transaction.User.name %>
+         </td>
+         <td><%= transaction.ItemId %>
+         </td>
+         <td>
+             <a class "ui button mini" href="/transaction/<%= transaction.id %>/edit">Edit</a>
+             <a href="/transaction/<%= transaction.id%>/delete">Delete</a>
+         </td>
+       </tr>
+     <% } %>
+ </tbody>
+</table>
+<%- include('./partials/footer')%>
