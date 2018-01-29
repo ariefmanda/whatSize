@@ -1,6 +1,5 @@
 {
   "development": {
-
     "username": "admin",
     "password": "admin",
     "database": "whatsize",

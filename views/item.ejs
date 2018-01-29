@@ -1,11 +1,38 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+
+<html lang="en">
+<head>
+  <title>Items List</title>
+</head>
+<body>
+  <center>
+    <h1>Item List</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Item Id</th>
+          <th>Brand Id</th>
+          <th>Size Id</th>
+          <th>Item Name</th>
+          <th>Item Price</th>
+          <th>Item Stock</th>
+          <th>Item Code</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <%data.forEach(data => {%>
+          <td><%=data.id%></td>
+          <td><%=data.BrandId%></td>
+          <td><%=data.SizeId%></td>
+          <td><%=data.itemName%></td>
+          <td><%=data.itemPrice%></td>
+          <td><%=data.itemStock%></td>
+          <td><%=data.itemCode%></td>
+        </tr>
+        <%})%>
+      </tbody>
+    </table>
+  </center>
+</body>
 </html>
