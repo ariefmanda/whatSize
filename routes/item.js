@@ -1,13 +1,18 @@
 var express = require('express');
 var router = express.Router();
+var models = require('../models');
 
-/* GET items. */
+/* GET item. */
 router.get('/', function (req, res, next) {
-    res.send('test 123');
+    models.Item.findAll({})
+    .then((result) => {
+        // res.send(result)
+        res.render('item', { data: result })
+    })
+    .catch(err => {
+        console.log(err)
+    })
 });
-
-
-
 
 
 
