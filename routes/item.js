@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET items. */
 router.get('/', function (req, res, next) {
-    res.send('ini halaman items');
+    res.send('test 123');
 });
 
 
