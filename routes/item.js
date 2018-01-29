@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var models = require('../models');
 
 var models = require('../models');
 
 /* GET item. */
 router.get('/', function (req, res, next) {
-<<<<<<< HEAD
     models.Item.findAll({})
     .then((result) => {
         // res.send(result)
@@ -14,9 +14,6 @@ router.get('/', function (req, res, next) {
     .catch(err => {
         console.log(err)
     })
-=======
-    res.send('test 123');
->>>>>>> seed dummy ke table Item
 });
 
 router.get('/add', (req, res) => {
