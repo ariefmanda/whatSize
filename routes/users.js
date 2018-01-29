@@ -19,7 +19,7 @@ router.post('/add', function(req, res, next) {
     email: req.body.email,
     password: encrypt.encrypt(req.body.password)
   }).then(data=>{
-    let link = `http://${req.headers.host}/user/aktiv/${encrypt.encrypt(String(data.id))}`
+    let link = `http://${req.headers.host}/users/aktiv/${encrypt.encrypt(String(data.id))}`
     email(`${req.body.email}`,link,'Aktivasi Akun whatSize',(err,info)=>{
       if(!err){
         res.flash('Silahkan lihat email anda untuk aktifasi akun ini')
@@ -42,7 +42,8 @@ router.post('/add', function(req, res, next) {
 });
 
 router.get('/aktiv/:id',(req,res,next)=>{
-  models.User.Update({
+  console.log(encrypt.decrypt(req.params.id));
+  models.User.update({
     status:1
   },{
     where:{
@@ -50,6 +51,7 @@ router.get('/aktiv/:id',(req,res,next)=>{
     }
   }).then(data=>{
     res.flash('akun anda sudah aktif silahkan login')
+    res.redirect('/auth/login')
   }).catch(err=>{
     next(err)
   })
@@ -66,7 +68,7 @@ router.post('/forgot',(req,res,next)=>{
       email:req.body.email
     }
   }).then(data=>{
-    let link = `http://${req.headers.host}/user/reset/${encrypt.encrypt(String(data.id))}`
+    let link = `http://${req.headers.host}/users/reset/${encrypt.encrypt(String(data.id))}`
     email(`${req.body.email}`,link,'forgot password Akun whatSize',(err,info)=>{
       if(!err){
         res.flash('Silahkan lihat email anda untuk aktifasi akun ini')

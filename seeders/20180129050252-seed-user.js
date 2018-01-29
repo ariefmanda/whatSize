@@ -16,7 +16,7 @@ module.exports = {
       name: "Arief",
       role: "0",
       email: "arief@mail.com",
-      status: 0,
+      status: 1,
       password: "d036d273a25d443ffda600fc3367f745",
       createdAt: moment().format(),
       updatedAt:moment().format()

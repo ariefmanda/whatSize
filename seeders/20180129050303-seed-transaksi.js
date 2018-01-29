@@ -14,22 +14,22 @@ module.exports = {
     */
     return queryInterface.bulkInsert('Transaksis', [{
       UserId: 1,
-      VarianId: 1,
+      ItemId: 1,
       createdAt: moment().format(),
       updatedAt:moment().format()
     },{
       UserId: 1,
-      VarianId: 2,
+      ItemId: 2,
       createdAt: moment().format(),
       updatedAt:moment().format()
     },{
       UserId: 2,
-      VarianId: 1,
+      ItemId: 1,
       createdAt: moment().format(),
       updatedAt:moment().format()
     },{
       UserId: 2,
-      VarianId: 2,
+      ItemId: 2,
       createdAt: moment().format(),
       updatedAt:moment().format()
     }], {});

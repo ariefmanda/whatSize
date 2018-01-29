@@ -2,13 +2,10 @@
 module.exports = (sequelize, DataTypes) => {
   var Transaksi = sequelize.define('Transaksi', {
     UserId: DataTypes.INTEGER,
-    VarianId: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
+    ItemId: DataTypes.INTEGER
   });
+  Transaksi.associate = function(models) {
+    Transaksi.belongsTo(models.User)
+  }
   return Transaksi;
 };
