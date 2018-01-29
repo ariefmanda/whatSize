@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<title><%= title %></title>
+<head>
+    <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css"
+        async />
+</head>
+
+<body>
+    <div class="ui large menu">
+        <div class="item">
+            <img style="margin-right:10px;" src="https://hacktiv8.com/img/fox--md5--a9e377ae39495073d0e66db163fc8d9b.png"> WHAT
+            <br>SIZE
+        </div>
+        <a class="link item" href="/">Home</a>
+        <div class="right menu">
+    <a class="ui item">
+      Login
+    </a>
+  </div>
+    </div>
+    <% if (typeof message !== 'undefined') { %>
+        <div class="ui error message">
+            <%= message %>
+        </div>
+        <% } %>
