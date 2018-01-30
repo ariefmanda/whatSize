@@ -2,25 +2,25 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models');
 
-var models = require('../models');
-
 /* GET item. */
 router.get('/', function (req, res, next) {
-    models.Item.findAll({})
+    models.Item.findAll({
+        include:[models.Brand, models.Size]
+    })
     .then((result) => {
         // res.send(result)
         res.render('item', { data: result })
     })
     .catch(err => {
-        console.log(err)
+        next(err)
     })
 });
 
-router.get('/add', (req, res) => {
+router.get('/add', (req, res, next) => {
     res.render('additem')
 })
 
-router.post('/add', (req, res) => {
+router.post('/add', (req, res, next) => {
     models.Item.create({
         BrandId: req.body.BrandId,
         SizeId: req.body.SizeId,
@@ -33,22 +33,22 @@ router.post('/add', (req, res) => {
         res.redirect('/item')
     })
     .catch(err => {
-        console.log(err)
+        next(err)
     })
 })
 
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', (req, res, next) => {
     models.Item.findById(req.params.id)
     .then((result) => {
         res.render('edititem', {data: result})
         // res.send(result.itemName)
     })
     .catch(err => {
-        console.log(err)
+        next(err)
     })
 })
 
-router.post('/edit/:id', (req, res) => {
+router.post('/edit/:id', (req, res, next) => {
     models.Item.update({
         BrandId: req.body.BrandId,
         SizeId: req.body.SizeId,
@@ -65,11 +65,11 @@ router.post('/edit/:id', (req, res) => {
         res.redirect('/item')
     })
     .catch(err => {
-        console.log(err)
+        next(err)
     })
 })
 
-router.get('/delete/:id', (req, res) =>{
+router.get('/delete/:id', (req, res, next) =>{
     models.Item.destroy({
         where: {
             id: req.params.id
@@ -79,7 +79,7 @@ router.get('/delete/:id', (req, res) =>{
         res.redirect('/item')
     })
     .catch(err => {
-        console.log(err)
+        next(err)
     })
 })
 

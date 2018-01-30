@@ -7,13 +7,15 @@ module.exports = (sequelize, DataTypes) => {
     itemPrice: DataTypes.INTEGER,
     itemStock: DataTypes.INTEGER,
     itemCode: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-        
-      }
-    }
   });
+  // Class Method
+  Item.associate = (models) => {
+    Item.belongsTo(models.Brand);
+    Item.belongsTo(models.Size);
+  }
+  
+
+  // Instance Method
+  // Model.prototype.someMethod = function () {..}
   return Item;
 };

@@ -2,12 +2,9 @@
 module.exports = (sequelize, DataTypes) => {
   var Brand = sequelize.define('Brand', {
     brandName: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+  Brand.associate = (models) => {
+    Brand.hasMany(models.Item);
+  };
   return Brand;
 };
