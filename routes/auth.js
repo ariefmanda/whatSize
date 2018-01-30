@@ -24,7 +24,7 @@ router.post('/login',function(req, res, next) {
           }else{
             req.session.login = true
             req.session.user = user
-            res.redirect('/transactions')
+            res.redirect('/users')
           }
         }else{
           res.flash('Password anda salah')

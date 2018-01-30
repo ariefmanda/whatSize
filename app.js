@@ -34,11 +34,15 @@ app.use(function(req,res,next){
 app.use('/auth', auth);
 app.use('/users', users);
 app.use('/transactions', transactions);
+<<<<<<< HEAD
 app.use('/item', item);
 app.use('/brand', brand);
 app.use('/size', size);
 app.use('/', index);
 
+=======
+app.use('/',sessionHelpher, index);
+>>>>>>> transaksi 20%
 // catch 404 and forward to error handler
 app.use('*',(req,res,next)=>{
   res.flash('Situs tidak ditemukan')
