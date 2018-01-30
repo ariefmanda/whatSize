@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "tzggaewy",
-    "password": "9MawHMyaUIDmPzmlcXj7o5QpjVi6_9hF",
-    "database": "tzggaewy",
-    "host": "baasu.db.elephantsql.com",
+    "username": "admin",
+    "password": "admin",
+    "database": "whatsize",
+    "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
