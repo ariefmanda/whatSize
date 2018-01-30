@@ -31,7 +31,7 @@ app.use(function(req,res,next){
 app.use('/auth', auth);
 app.use('/users', users);
 app.use('/transactions', transactions);
-app.use('/', index);
+app.use('/',sessionHelpher, index);
 // catch 404 and forward to error handler
 app.use('*',(req,res,next)=>{
   res.flash('Situs tidak ditemukan')
