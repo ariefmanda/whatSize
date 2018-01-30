@@ -6,9 +6,17 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+<<<<<<< HEAD
 
 
 
 
 
 module.exports = router;
+=======
+router.get('/barcode',(req,res,next)=>{
+  res.render('barcode/index',{
+    title:'Barcode'
+  })})
+module.exports = router;
+>>>>>>> transaction 28%

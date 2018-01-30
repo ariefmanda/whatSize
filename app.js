@@ -18,6 +18,7 @@ var transactions = require('./routes/transaction');
 
 var app = express();
 // view engine setup
+app.use(express.static('public'))
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(cookieParser());

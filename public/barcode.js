@@ -14,9 +14,9 @@ var barcode = function() {
 	var elements = {
 		video: null,
 		canvas: null,
-		ctx: null,
+		ctx: null,	
 		canvasg: null,
-		ctxg: null
+		ctxg: null	
 	}
 
 	var upc = {
@@ -97,7 +97,7 @@ var barcode = function() {
 
 	function snapshot() {
 		elements.ctx.drawImage(elements.video, -1, -1, dimensions.width, dimensions.height);
-		processImage();
+		processImage();		
 	}
 
 	function processImage() {
@@ -109,7 +109,7 @@ var barcode = function() {
 		var pixelBars = [];
 
 		// convert to grayscale
-
+ 
 		var imgd = elements.ctx.getImageData(dimensions.start, dimensions.height * 0.5, dimensions.end - dimensions.start, 1);
 		var rgbpixels = imgd.data;
 
@@ -123,13 +123,13 @@ var barcode = function() {
 		var max = Math.max.apply(null, pixels);
 
 		for (var i = 0, ii = pixels.length; i < ii; i++) {
-			if (Math.round((pixels[i] - min) / (max - min) * 255) > config.threshold) {
+			if (Math.round((pixels[i] - min) / (max - min) * 255) > config.threshold) {				
 				binary.push(1);
 			} else {
 				binary.push(0);
 			}
 		}
-
+		
 		// determine bar widths
 
 		var current = binary[0];
@@ -188,7 +188,7 @@ var barcode = function() {
 		// calculate relative widths
 
 		var ref = (pixelBars[0] + pixelBars[1] + pixelBars[2]) / 3;
-
+		
 		for (var i = 0, ii = pixelBars.length; i < ii; i++) {
 			bars.push(Math.round(pixelBars[i] / ref * 100) / 100);
 		}
@@ -197,7 +197,7 @@ var barcode = function() {
 
 		analyze();
 
-	}
+	}	
 
 	function analyze() {
 
@@ -242,11 +242,11 @@ var barcode = function() {
 				parities.push('e');
 				digits[i] = digits[i].reverse();
 			}
-		}
-
+		}		
+				
 		// identify digits
-
-		var result = [];
+		
+		var result = [];	
 		var quality = 0;
 
 		for (var i = 0, ii = digits.length; i < ii; i++) {
@@ -258,20 +258,20 @@ var barcode = function() {
 				if (maxDistance(digits[i], upc[key]) < distance) {
 					distance = maxDistance(digits[i], upc[key]);
 					bestKey = key;
-				}
+				}	
 			}
 
 			result.push(bestKey);
 			if (distance > quality) {
 				quality = distance;
 			}
-
+		
 		}
 
-		console.log("result: " + result);
+		console.log("result: " + result);	
 
 		// check digit
-
+		
 		var checkDigit = check[parities.join('')];
 
 		// output
@@ -302,7 +302,7 @@ var barcode = function() {
 		return result;
 	}
 
-	function isOdd(num) {
+	function isOdd(num) { 
 		return num % 2;
 	}
 
@@ -319,7 +319,7 @@ var barcode = function() {
 	function parity(digit) {
 		return isOdd(Math.round(digit[1] + digit[3]));
 	}
-
+	
 	function drawGraphics() {
 		elements.ctxg.strokeStyle = config.strokeColor;
 		elements.ctxg.lineWidth = 3;
