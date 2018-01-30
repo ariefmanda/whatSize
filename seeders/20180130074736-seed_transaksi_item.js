@@ -12,20 +12,24 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-    return queryInterface.bulkInsert('Transaksis', [{
-      UserId: 1,
+    return queryInterface.bulkInsert('TransaksiItems', [{
+      TransaksiId: 1,
+      ItemId:1,
       createdAt: moment().format(),
       updatedAt:moment().format()
     },{
-      UserId: 1,
+      TransaksiId: 1,
+      ItemId:2,
       createdAt: moment().format(),
       updatedAt:moment().format()
     },{
-      UserId: 2,
+      TransaksiId: 2,
+      ItemId:1,
       createdAt: moment().format(),
       updatedAt:moment().format()
     },{
-      UserId: 2,
+      TransaksiId: 2,
+      ItemId:2,
       createdAt: moment().format(),
       updatedAt:moment().format()
     }], {});
@@ -39,6 +43,6 @@ module.exports = {
       Example:
       return queryInterface.bulkDelete('Person', null, {});
     */
-    return queryInterface.bulkDelete('Transaksis', null, {});
+    return queryInterface.bulkDelete('TransaksiItems', null, {});
   }
 };

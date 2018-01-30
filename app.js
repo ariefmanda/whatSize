@@ -11,6 +11,7 @@ const sessionHelpher = require('./helpers/authSession');
 var index = require('./routes/index');
 var auth = require('./routes/auth');
 var users = require('./routes/users');
+var transactions = require('./routes/transactions');
 
 var app = express();
 // view engine setup
@@ -29,7 +30,8 @@ app.use(function(req,res,next){
 
 app.use('/auth', auth);
 app.use('/users', users);
-app.use('/', index);
+app.use('/transactions', transactions);
+app.use('/',sessionHelpher, index);
 // catch 404 and forward to error handler
 app.use('*',(req,res,next)=>{
   res.flash('Situs tidak ditemukan')

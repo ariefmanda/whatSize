@@ -18,11 +18,6 @@
       padding-top: 10px;
     }
 
-    input,
-    select {
-      margin-bottom: 20px !important;
-    }
-
     form {
       max-width: 400px !important;
     }
@@ -50,7 +45,35 @@
       <br>SIZE
     </div>
     <a class="link item" href="/">Home</a>
+    <a href="/transactions" class="link item">
+      Transaction
+    </a>
+    <a href="/items" class="link item">
+      Stock
+    </a>
+    <a href="/transactions" class="link item">
+      Data Master
+    </a>
+    <!-- <% if (login) { %>
+      <a href="/transactions" class="link item">
+      Transaction
+      </a>
+      <a href="/items" class="link item">
+        Stock
+      </a>
+      <a href="/transactions" class="link item">
+        Data Master
+      </a>
+    <% } %> -->
     <div class="right menu">
+      <div class="item">
+        <div class="ui transparent icon input">
+          <form action="/" method="post">
+            <input name="search" type="text" placeholder="Search...">
+            <i class="search link icon"></i>
+          </form>
+        </div>
+    </div>
       <a href="/users/add" class="ui item">
         Register
       </a>

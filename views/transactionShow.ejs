@@ -1,0 +1,48 @@
+<%- include('./partials/header')%>
+<table class="ui celled compact table">
+  <thead>
+    <th>Date (GMT)</th>
+    <th>Name Item</th>
+    <th>Jumlah Item</th>
+    <th>Harga</th>
+    <th>Action</th>
+  </thead>
+  <tbody>
+      <% for(let transaction of transactionItems) {%>
+        <tr>
+          <td> <%= transaction.date %> </td>
+          <td><%= transaction.ItemId %>
+          </td>
+          <td><%= transaction.jumlahItem %>
+          </td>
+          <td><%= 'Harganya nanti' %>
+          </td>
+          <td>
+              <a href="/transactions/<%= transaction.TransaksiId%>/<%= transaction.id%>/delete">Delete</a>
+          </td>
+        </tr>
+      <% } %>
+  </tbody>
+</table>
+<h5>ASSIGN ITEM:</h5>
+<br>
+  <form action="/transactions/<%= transactionId%>/add" method="POST">
+    <div class="ui small form">
+  <div class="three fields">
+    <div class="field">
+      <label>Code Item</label>
+      <input name="codeItem" placeholder="Code Item" type="text">
+    </div>
+    <div class="field">
+      <label>Jumlah</label>
+      <input name="jumlahitem" placeholder="Jumlah" type="number">
+    </div>
+    <div class="field">
+      <label>Submit</label>
+      <input class="ui submit button" type="submit" value="Submit">
+    </div>
+  </div>
+  </div>
+  </form>
+<h3><a class="ui primary button" href="/transactions">Back to Date Transaction</a></h3>
+<%- include('./partials/footer')%>

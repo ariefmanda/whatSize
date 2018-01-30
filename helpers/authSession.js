@@ -1,5 +1,10 @@
 function checkLoginHandler(req, res, next) {
+  req.session.login=true
   let login = req.session.login
+  req.session.user={
+    id:1,
+    name:'admin'
+  }
   if(login){
     next()
   }else{
