@@ -71,9 +71,4 @@ router.post('/:id/add', (req, res, next) => {
   //   }
   // })
 })
-router.get('/barcode',(req,res,next)=>{
-  res.render('barcode/index',{
-    title
-  })
-})
 module.exports = router;

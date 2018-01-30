@@ -8,7 +8,10 @@
 </title>
 
 <head>
-  <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css" async />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="barcode.js"></script>
+  <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css"
+    async />
   <style>
     body {
       width: 80%;
@@ -17,6 +20,7 @@
       background: #efefef;
       padding-top: 10px;
     }
+
     form {
       max-width: 400px !important;
     }
@@ -24,9 +28,55 @@
     form>input:last-child {
       margin-top: 15px !important;
     }
+
+    #barcodevideo,
+    #barcodecanvas,
+    #barcodecanvasg {
+      height: 400px;
+    }
+
+    #barcodecanvasg {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
+    #result {
+      font-family: verdana;
+      font-size: 1.5em;
+    }
+
+    #barcode {
+      position: relative;
+    }
+
+    #barcodecanvas {
+      display: none;
+    }
   </style>
-  <script type="text/javascript" src="jquery.js"></script>
-  <script type="text/javascript" src="barcode.js"></script>
+  <script type="text/javascript">
+
+    var sound = new Audio("barcode.wav");
+  
+    $(document).ready(function () {
+  
+      barcode.config.start = 0.1;
+      barcode.config.end = 0.9;
+      barcode.config.video = '#barcodevideo';
+      barcode.config.canvas = '#barcodecanvas';
+      barcode.config.canvasg = '#barcodecanvasg';
+      barcode.setHandler(function (barcode) {
+        $('#result').html(barcode);
+      });
+      barcode.init();
+  
+      $('#result').bind('DOMSubtreeModified', function (e) {
+        sound.play();
+      });
+  
+    });
+  
+  </script>
 </head>
 
 <body>
@@ -38,7 +88,7 @@
     <a class="link item" href="/">Home</a>
     <% if (login) { %>
       <a href="/transactions" class="link item">
-      Transaction
+        Transaction
       </a>
       <a href="/items" class="link item">
         Stock
@@ -57,22 +107,22 @@
             </div>
 
           </div>
-          <a href="/transactions/barcode" class="ui item">
-      <i class="barcode icon"></i>
-    </a>
-    <% if (!login) { %>
-          <a href="/users/add" class="ui item">
-        Register
-      </a>
-        <% } %>
-          <% if (login) { %>
-            <a href="/auth/logout" class="ui item">
-          Logout
-        <% }else{ %>
-          <a href="/auth/login" class="ui item">
-          Login
-        <% } %>
-    </a>
+          <a href="/barcode" class="ui item">
+            <i class="barcode icon"></i>
+          </a>
+          <% if (!login) { %>
+            <a href="/users/add" class="ui item">
+              Register
+            </a>
+            <% } %>
+              <% if (login) { %>
+                <a href="/auth/logout" class="ui item">
+                  Logout
+                  <% }else{ %>
+                    <a href="/auth/login" class="ui item">
+                      Login
+                      <% } %>
+                    </a>
         </div>
   </div>
   <% if (typeof message !== 'undefined') { %>
