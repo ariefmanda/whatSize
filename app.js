@@ -12,6 +12,7 @@ var index = require('./routes/index');
 var auth = require('./routes/auth');
 var users = require('./routes/users');
 var item = require('./routes/item');
+var brand = require('./routes/brand');
 
 var app = express();
 // view engine setup

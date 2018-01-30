@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Brand List</title>
+</head>
+
+<body>
+    <center>
+        <h1>Brand List</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Brand Id</th>
+                    <th>Brand Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <%data.forEach(data => {%>
+                        <td>
+                            <%=data.id%>
+                        </td>
+                        <td>
+                            <%=data.brandName%>
+                        </td>
+                        <td>
+                            <a href="/brand/edit/<%=data.id%>">edit</a> |
+                            <a href="/brand/delete/<%=data.id%>">delete</a>
+                        </td>
+                </tr>
+                <%})%>
+            </tbody>
+        </table>
+        </br>
+        </br>
+        <form action="/brand/add">
+            <button>add new brand</button>
+        </form>
+    </center>
+</body>
+
+</html>
+</center>
+</body>
+</html>
