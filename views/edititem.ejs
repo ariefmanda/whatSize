@@ -1,0 +1,32 @@
+<%- include('./partials/header')%>
+  <div class="ui tall stacked segment">
+    <h2><%=title%></h2>
+    <form class="ui form" method="POST" action="">
+        <div class="field">
+          <label>Brand</label>
+          <input type="text" name="BrandId" value="<%=(data)? data.BrandId : ' '%>" required>
+        </div>
+        <div class="field">
+          <label>Size</label>
+          <input type="number" name="SizeId" value="<%=(data)? data.SizeId : ' '%>" required>
+        </div>
+        <div class="field">
+          <label>Name Varian</label>
+          <input type="text" name="itemName" value="<%=(data)? data.itemName : ' '%>" required>
+        </div>
+        <div class="field">
+          <label>Price</label>
+          <input type="text" name="itemPrice" value="<%=(data)? data.itemPrice : ' '%>" required>
+        </div>
+        <div class="field">
+          <label>Stock</label>
+          <input type="number" name="itemStock" value="<%=(data)? data.itemStock : ' '%>" required>
+        </div>
+        <div class="field">
+          <label>Code Varian</label>
+          <input type="text" name="itemCode" value="<%=(data)? data.itemCode : ' '%>" required>
+        </div>
+      <button class="ui button" type="submit">Submit</button>
+    </form>
+  </div>
+  <%- include('./partials/footer')%>

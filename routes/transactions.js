@@ -22,6 +22,7 @@ router.get('/', (req, res, next) => {
 })
 router.get('/:id/show', (req, res, next) => {
   models.TransaksiItem.findAll({
+    include:[models.Item],
     where: {
       TransaksiId: req.params.id
     }
@@ -55,20 +56,19 @@ router.get('/add', (req, res, next) => {
   })
 })
 router.post('/:id/add', (req, res, next) => {
-  res.send(req.body)
-  // models.Item.find({
-  //   where: {
-  //     codeItem: codeItem
-  //   }
-  // }).then(item => {
-  //   if ((Number(item.stock) - Number(req.body.jumlahItem)) >= 0) {
-  //     models.transactionItems.create({TransaksiId: req.params.id, Itemid: item.id, jumlahItem: req.body.jumlahItem}).then(transactionItem => {
-  //       res.redirect(`/transactions/${transaction.id}/show`)
-  //     })
-  //   } else {
-  //     res.flash('Stock anda tidak ada')
-  //     res.redirect(`/transactions/${transaction.id}/show`)
-  //   }
-  // })
+  models.Item.find({
+    where: {
+      itemCode: req.body.codeItem
+    }
+  }).then(item => {
+    if ((Number(item.itemStock) - Number(req.body.jumlahItem)) >= 0) {
+      models.TransaksiItem.create({TransaksiId: req.params.id, ItemId: item.id, jumlahItem: req.body.jumlahItem}).then(transactionItem => {
+        res.redirect(`/transactions/${req.params.id}/show`)
+      })
+    } else {
+      res.flash('Stock anda tidak ada')
+      res.redirect(`/transactions/${req.params.id}/show`)
+    }
+  })
 })
 module.exports = router;

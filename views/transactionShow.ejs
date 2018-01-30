@@ -11,11 +11,11 @@
       <% for(let transaction of transactionItems) {%>
         <tr>
           <td> <%= transaction.date %> </td>
-          <td><%= transaction.ItemId %>
+          <td><%= transaction.Item.itemName %>
           </td>
           <td><%= transaction.jumlahItem %>
           </td>
-          <td><%= 'Harganya nanti' %>
+          <td><%=(transaction.jumlahItem*transaction.Item.itemPrice) %>
           </td>
           <td>
               <a href="/transactions/<%= transaction.TransaksiId%>/<%= transaction.id%>/delete">Delete</a>
@@ -35,7 +35,7 @@
     </div>
     <div class="field">
       <label>Jumlah</label>
-      <input name="jumlahitem" placeholder="Jumlah" type="number">
+      <input name="jumlahItem" placeholder="Jumlah" type="number">
     </div>
     <div class="field">
       <label>Submit</label>
