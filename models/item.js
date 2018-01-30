@@ -1,9 +1,5 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-<<<<<<< HEAD
-
-=======
->>>>>>> seed dummy ke table Item
   var Item = sequelize.define('Item', {
     BrandId: DataTypes.INTEGER,
     SizeId: DataTypes.INTEGER,
