@@ -17,6 +17,7 @@
           <th>Item Price</th>
           <th>Item Stock</th>
           <th>Item Code</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -29,10 +30,17 @@
           <td><%=data.itemPrice%></td>
           <td><%=data.itemStock%></td>
           <td><%=data.itemCode%></td>
+          <td><a href="/item/edit/<%=data.id%>">edit</a> | <a href="/item/delete/<%=data.id%>">delete</a></td>
         </tr>
         <%})%>
       </tbody>
     </table>
+    </br>
+    </br>
+    <form action="/item/add">
+      <!-- <input type="submit" value="add"/> -->
+      <button>add new item</button>
+    </form>
   </center>
 </body>
 </html>
