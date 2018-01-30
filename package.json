@@ -2,8 +2,12 @@
   "name": "whatsize",
   "version": "0.0.0",
   "private": true,
+  "main": "app.js",
   "scripts": {
-    "start": "./node_modules/nodemon/bin/nodemon.js ./bin/www"
+    "start": "NODE_ENV=development node ./bin/www"
+  },
+  "engines": {
+    "node": "8.9.1"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
