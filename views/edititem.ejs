@@ -2,46 +2,31 @@
   <div class="ui tall stacked segment">
     <h2><%=title%></h2>
     <form class="ui form" method="POST" action="">
-      <div class="ui form">
         <div class="field">
           <label>Brand</label>
-          <select name="BrandId" class="ui dropdown">
-          <option value="">Select Brand</option>
-          <%brands.forEach(e=>{%>
-          <option value="<%=e.id%>"><%=e.brandName%></option>
-          <%})%>
-        </select>
+          <input type="text" name="BrandId" value="<%=(data)? data.BrandId : ' '%>" required>
         </div>
-      </div>
-      <div class="ui form">
         <div class="field">
           <label>Size</label>
-          <select name="SizeId" class="ui dropdown">
-            <option value="">Select Size</option>
-            <%sizes.forEach(e=>{%>
-            <option value="<%=e.id%>"><%=e.sizeNumber%></option>
-            <%})%>
-          </select>
+          <input type="number" name="SizeId" value="<%=(data)? data.SizeId : ' '%>" required>
         </div>
-      </div>
-      <div class="field">
-        <label>Name Varian</label>
-        <input type="text" name="itemName" value="<%=(data)? data.itemName : ' '%>" required>
-      </div>
-      <div class="field">
-        <label>Price</label>
-        <input type="text" name="itemPrice" value="<%=(data)? data.itemPrice : ' '%>" required>
-      </div>
-      <div class="field">
-        <label>Stock</label>
-        <input type="number" name="itemStock" value="<%=(data)? data.itemStock : ' '%>" required>
-      </div>
-      <div class="field">
-        <label>Code Varian</label>
-        <input type="text" name="itemCode" value="<%=(data)? data.itemCode : ' '%>" required>
-      </div>
+        <div class="field">
+          <label>Name Varian</label>
+          <input type="text" name="itemName" value="<%=(data)? data.itemName : ' '%>" required>
+        </div>
+        <div class="field">
+          <label>Price</label>
+          <input type="text" name="itemPrice" value="<%=(data)? data.itemPrice : ' '%>" required>
+        </div>
+        <div class="field">
+          <label>Stock</label>
+          <input type="number" name="itemStock" value="<%=(data)? data.itemStock : ' '%>" required>
+        </div>
+        <div class="field">
+          <label>Code Varian</label>
+          <input type="text" name="itemCode" value="<%=(data)? data.itemCode : ' '%>" required>
+        </div>
       <button class="ui button" type="submit">Submit</button>
     </form>
   </div>
   <%- include('./partials/footer')%>
-    <!-- <input type="text" name="BrandId" value="<%=(data)? data.BrandId : ' '%>" required> -->

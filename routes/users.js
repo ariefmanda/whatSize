@@ -116,7 +116,11 @@ router.post('/reset/:id',(req,res,next)=>{
     res.flash('Password anda berbeda')
     res.redirect(`/reset/${req.params.id}`)
   }
-
+})
+router.get('/barcode',(req,res,next)=>{
+  res.render('barcode/index',{
+    title:'Barcode'
+  })
 })
 
 module.exports = router;

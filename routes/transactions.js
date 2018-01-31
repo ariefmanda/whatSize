@@ -22,7 +22,7 @@ router.get('/', (req, res, next) => {
 })
 router.get('/:id/show', (req, res, next) => {
   models.TransaksiItem.findAll({
-    include: [models.Item],
+    include:[models.Item],
     where: {
       TransaksiId: req.params.id
     }
@@ -74,6 +74,7 @@ router.post('/:id/add', (req, res, next) => {
         })
       }).catch(err => {
         next(err)
+
       })
     } else {
       res.flash('Stock anda tidak ada')

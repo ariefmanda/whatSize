@@ -8,27 +8,27 @@ module.exports = {
       updatedAt: new Date()
     },
     {
-      brandName: 41,
+      sizeNumber: 41,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      brandName: 42,
+      sizeNumber: 42,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      brandName: 43,
+      sizeNumber: 43,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      brandName: 44,
+      sizeNumber: 44,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      brandName: 45,
+      sizeNumber: 45,
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});
