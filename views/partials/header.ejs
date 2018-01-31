@@ -8,10 +8,7 @@
 </title>
 
 <head>
-    <script type="text/javascript" src="jquery.js"></script>
-    <script type="text/javascript" src="barcode.js"></script>
-  <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css"
-    async />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css" async />
   <style>
     body {
       width: 80%;
@@ -28,55 +25,7 @@
     form>input:last-child {
       margin-top: 15px !important;
     }
-
-    #barcodevideo,
-    #barcodecanvas,
-    #barcodecanvasg {
-      height: 400px;
-    }
-
-    #barcodecanvasg {
-      position: absolute;
-      top: 0px;
-      left: 0px;
-    }
-
-    #result {
-      font-family: verdana;
-      font-size: 1.5em;
-    }
-
-    #barcode {
-      position: relative;
-    }
-
-    #barcodecanvas {
-      display: none;
-    }
   </style>
-  <script type="text/javascript">
-
-    var sound = new Audio("barcode.wav");
-  
-    $(document).ready(function () {
-  
-      barcode.config.start = 0.1;
-      barcode.config.end = 0.9;
-      barcode.config.video = '#barcodevideo';
-      barcode.config.canvas = '#barcodecanvas';
-      barcode.config.canvasg = '#barcodecanvasg';
-      barcode.setHandler(function (barcode) {
-        $('#result').html(barcode);
-      });
-      barcode.init();
-  
-      $('#result').bind('DOMSubtreeModified', function (e) {
-        sound.play();
-      });
-  
-    });
-  
-  </script>
 </head>
 
 <body>
@@ -85,45 +34,41 @@
       <img style="margin-right:10px;" src="https://hacktiv8.com/img/fox--md5--a9e377ae39495073d0e66db163fc8d9b.png"> WHAT
       <br>SIZE
     </div>
-    <a class="link item" href="/">Home</a>
+    <a href="/" class="link item">
+    Home
+    </a>
     <% if (login) { %>
       <a href="/transactions" class="link item">
-        Transaction
+      Transaction
       </a>
-      <a href="/items" class="link item">
+      <% if (user.role=1) { %>
+        <a href="/items" class="link item">
         Stock
       </a>
-      <a href="/transactions" class="link item">
+        <a href="/brand" class="link item">
         Data Master
       </a>
-      <% } %>
-        <div class="right menu">
-          <div class="item">
-            <div class="ui transparent icon input">
-              <form action="/" method="post">
-                <input name="search" type="text" placeholder="Search...">
-                <i class="search link icon"></i>
-              </form>
-            </div>
+        <% } %>
+          <% } %>
+            <div class="right menu">
+              <a href="/search/barcode" class="ui item">
+                <i class="barcode icon"></i>
+              </a>
 
-          </div>
-          <a href="/barcode" class="ui item">
-            <i class="barcode icon"></i>
-          </a>
-          <% if (!login) { %>
-            <a href="/users/add" class="ui item">
-              Register
-            </a>
-            <% } %>
-              <% if (login) { %>
-                <a href="/auth/logout" class="ui item">
-                  Logout
-                  <% }else{ %>
-                    <a href="/auth/login" class="ui item">
-                      Login
-                      <% } %>
-                    </a>
-        </div>
+              <% if (!login) { %>
+                <a href="/users/add" class="ui item">
+        Register
+      </a>
+                <% } %>
+                  <% if (login) { %>
+                    <a href="/auth/logout" class="ui item">
+          Logout
+        <% }else{ %>
+          <a href="/auth/login" class="ui item">
+          Login
+        <% } %>
+    </a>
+            </div>
   </div>
   <% if (typeof message !== 'undefined') { %>
     <div class="ui error message">

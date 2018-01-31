@@ -1,0 +1,39 @@
+<%- include('./partials/header')%>
+<div class="ui top attached tabular menu">
+<a href="/brand" class="active item">Brand</a>
+<a href="/size" class="item">Size</a>
+</div>
+<div class="ui bottom attached active tab segment">
+    <table class="ui celled compact table">
+        <thead>
+            <tr>
+                <th>Brand Id</th>
+                <th>Brand Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <%data.forEach(data => {%>
+                    <td>
+                        <%=data.id%>
+                    </td>
+                    <td>
+                        <%=data.brandName%>
+                    </td>
+                    <td>
+                        <a href="/brand/edit/<%=data.id%>">edit</a> |
+                        <a href="/brand/delete/<%=data.id%>">delete</a>
+                    </td>
+            </tr>
+            <%})%>
+        </tbody>
+    </table>
+    </br>
+  </br>
+    <form class="ui form" action="" method="post">
+      <input type="text" placeholder="Brand name" name="brandName" value="<%=(dataEdit)? dataEdit.brandName: ' '%>">
+      <input class="ui primary button" type="submit" value="<%=(dataEdit)? 'Edit': 'Add'%>">
+    </form>
+  </div>
+  <%- include('./partials/footer')%>

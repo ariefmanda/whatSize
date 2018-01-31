@@ -1,0 +1,31 @@
+<%- include('./partials/header')%>
+<h3><a class="ui right floated primary button" href="/items/add">Add Item</a></h3><br><br>
+<table class="ui celled compact table">
+  <thead>
+    <tr>
+      <th>Item Id</th>
+      <th>Brand Id</th>
+      <th>Size Id</th>
+      <th>Item Name</th>
+      <th>Item Price</th>
+      <th>Item Stock</th>
+      <th>Item Code</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <%data.forEach(data => {%>
+      <td><%=data.id%></td>
+      <td><%=data.BrandId%></td>
+      <td><%=data.SizeId%></td>
+      <td><%=data.itemName%></td>
+      <td><%=data.itemPrice%></td>
+      <td><%=data.itemStock%></td>
+      <td><%=data.itemCode%></td>
+      <td><a href="/items/edit/<%=data.id%>">edit</a> | <a href="/items/delete/<%=data.id%>">delete</a></td>
+    </tr>
+    <%})%>
+  </tbody>
+</table>
+<%- include('./partials/footer')%>
