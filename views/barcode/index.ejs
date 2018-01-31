@@ -1,4 +1,6 @@
 <%- include('../partials/header')%>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="barcode.js"></script>
 <div class="ui tall stacked segment">
 <div id="barcode">
 	<video id="barcodevideo" controls autoplay></video>
@@ -10,4 +12,21 @@
 	<input class="ui primary button" type="submit" value="Submit">
 </form>
 </div>
+<script type="text/javascript">
+var sound = new Audio("barcode.wav");
+$(document).ready(function() {
+	barcode.config.start = 0.1;
+	barcode.config.end = 0.9;
+	barcode.config.video = '#barcodevideo';
+	barcode.config.canvas = '#barcodecanvas';
+	barcode.config.canvasg = '#barcodecanvasg';
+	barcode.setHandler(function(barcode) {
+		$('#result').html(barcode);
+	});
+	barcode.init();
+	$('#result').bind('DOMSubtreeModified', function(e) {
+		sound.play();
+	});
+});
+</script>
 <%- include('../partials/footer')%>

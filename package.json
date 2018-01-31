@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "./node_modules/nodemon/bin/nodemon.js ./bin/www"
+    "start": "NODE_ENV=development ./node_modules/nodemon/bin/nodemon.js ./bin/www"
+  },
+  "engines":{
+    "node": "9.3.0",
   },
   "dependencies": {
     "body-parser": "~1.18.2",
