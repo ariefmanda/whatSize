@@ -3,10 +3,10 @@ var router = express.Router();
 var models = require('../models');
 
 router.get('/', function (req, res, next) {
-    models.Brand.findAll({
+    models.Size.findAll({
     })
         .then((result) => {
-            res.render('brand', { data: result })
+            res.render('size', { data: result })
         })
         .catch(err => {
             next(err)
@@ -14,15 +14,15 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/add', (req, res, next) => {
-    res.render('addbrand')
+    res.render('addsize')
 })
 
 router.post('/add', (req, res, next) => {
-    models.Brand.create({
-        brandName: req.body.brandName
+    models.Size.create({
+        sizeNumber: req.body.sizeNumber
     })
         .then(() => {
-            res.redirect('/brand')
+            res.redirect('/size')
         })
         .catch(err => {
             next(err)
@@ -30,9 +30,9 @@ router.post('/add', (req, res, next) => {
 })
 
 router.get('/edit/:id', (req, res, next) => {
-    models.Brand.findById(req.params.id)
+    models.Size.findById(req.params.id)
         .then((result) => {
-            res.render('editbrand', { data: result })
+            res.render('editsize', { data: result })
         })
         .catch(err => {
             next(err)
@@ -40,15 +40,15 @@ router.get('/edit/:id', (req, res, next) => {
 })
 
 router.post('/edit/:id', (req, res, next) => {
-    models.Brand.update({
-        brandName: req.body.brandName
+    models.Size.update({
+        sizeNumber: req.body.sizeNumber
     }, {
             where: {
                 id: req.params.id
             }
         })
         .then(() => {
-            res.redirect('/brand')
+            res.redirect('/size')
         })
         .catch(err => {
             next(err)
@@ -56,13 +56,13 @@ router.post('/edit/:id', (req, res, next) => {
 })
 
 router.get('/delete/:id', (req, res, next) => {
-    models.Brand.destroy({
+    models.Size.destroy({
         where: {
             id: req.params.id
         }
     })
         .then(() => {
-            res.redirect('/brand')
+            res.redirect('/size')
         })
         .catch(err => {
             next(err)

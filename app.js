@@ -12,6 +12,8 @@ var index = require('./routes/index');
 var auth = require('./routes/auth');
 var users = require('./routes/users');
 var item = require('./routes/item');
+var brand = require('./routes/brand');
+var size = require('./routes/size');
 
 var app = express();
 // view engine setup
@@ -32,6 +34,8 @@ app.use('/auth', auth);
 app.use('/users', users);
 app.use('/', index);
 app.use('/item', item);
+app.use('/brand', brand);
+app.use('/size', size);
 
 // catch 404 and forward to error handler
 app.use('*',(req,res,next)=>{

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Size List</title>
+</head>
+
+<body>
+    <center>
+        <h1>Size List</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Size Id</th>
+                    <th>Size Number</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <%data.forEach(data => {%>
+                        <td>
+                            <%=data.id%>
+                        </td>
+                        <td>
+                            <%=data.sizeNumber%>
+                        </td>
+                        <td>
+                            <a href="/size/edit/<%=data.id%>">edit</a> |
+                            <a href="/size/delete/<%=data.id%>">delete</a>
+                        </td>
+                </tr>
+                <%})%>
+            </tbody>
+        </table>
+        </br>
+        </br>
+        <form action="/size/add">
+            <button>add new size</button>
+        </form>
+    </center>
+</body>
+
+</html>
+</center>
+</body>
+
+</html>
