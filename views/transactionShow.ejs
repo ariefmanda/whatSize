@@ -1,24 +1,4 @@
 <%- include('./partials/header')%>
-  <link rel="stylesheet" href="/style.css">
-  <script type="text/javascript" src="/jquery.js"></script>
-  <script type="text/javascript" src="/barcode.js"></script>
-  <script type="text/javascript">
-    var sound = new Audio("barcode.wav");
-    $(document).ready(function() {
-      barcode.config.start = 0.1;
-      barcode.config.end = 0.9;
-      barcode.config.video = '#barcodevideo';
-      barcode.config.canvas = '#barcodecanvas';
-      barcode.config.canvasg = '#barcodecanvasg';
-      barcode.setHandler(function(barcode) {
-        $('#result').html(barcode);
-      });
-      barcode.init();
-      $('#result').bind('DOMSubtreeModified', function(e) {
-        sound.play();
-      });
-    });
-  </script>
   <table class="ui celled compact table">
     <thead>
       <th>Date (GMT)</th>
@@ -51,6 +31,26 @@
   </table>
   <h5>ASSIGN ITEM:</h5>
   <br>
+  <link rel="stylesheet" href="/style.css">
+  <script type="text/javascript" src="/jquery.js"></script>
+  <script type="text/javascript" src="/barcode.js"></script>
+  <script type="text/javascript">
+    var sound = new Audio("barcode.wav");
+    $(document).ready(function() {
+      barcode.config.start = 0.1;
+      barcode.config.end = 0.9;
+      barcode.config.video = '#barcodevideo';
+      barcode.config.canvas = '#barcodecanvas';
+      barcode.config.canvasg = '#barcodecanvasg';
+      barcode.setHandler(function(barcode) {
+        $('#result').val(barcode);
+      });
+      barcode.init();
+      $('#result').bind('DOMSubtreeModified', function(e) {
+        sound.play();
+      });
+    });
+  </script>
   <div id="barcode">
     <video id="barcodevideo" controls autoplay></video>
     <canvas id="barcodecanvasg"></canvas>
@@ -61,7 +61,7 @@
       <div class="three fields">
         <div class="field">
           <label>Code Item</label>
-          <input id="result" name="codeItem" placeholder="Code Item" type="text">
+          <input id="result" name="codeItem" placeholder="Code Item" type="text" readonly>
         </div>
         <div class="field">
           <label>Jumlah</label>

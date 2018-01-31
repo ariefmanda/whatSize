@@ -1,33 +1,34 @@
 <%- include('../partials/header')%>
-	<link rel="stylesheet" href="/style.css">
-	<script type="text/javascript" src="/jquery.js"></script>
-	<script type="text/javascript" src="/barcode.js"></script>
-	<script type="text/javascript">
-		// var sound = new Audio("barcode.wav");
-		$(document).ready(function() {
-			barcode.config.start = 0.1;
-			barcode.config.end = 0.9;
-			barcode.config.video = '#barcodevideo';
-			barcode.config.canvas = '#barcodecanvas';
-			barcode.config.canvasg = '#barcodecanvasg';
-			barcode.setHandler(function(barcode) {
-				$('#result').html(barcode);
-			});
-			barcode.init();
-			// $('#result').bind('DOMSubtreeModified', function(e) {
-			// 	sound.play();
-			// });
-		});
-	</script>
 	<div class="ui tall stacked segment">
 	<%if(!data){%>
+		<link rel="stylesheet" href="/style.css">
+		<script type="text/javascript" src="/jquery.js"></script>
+		<script type="text/javascript" src="/barcode.js"></script>
+		<script type="text/javascript">
+			var sound = new Audio("/barcode.wav");
+			$(document).ready(function() {
+				barcode.config.start = 0.1;
+				barcode.config.end = 0.9;
+				barcode.config.video = '#barcodevideo';
+				barcode.config.canvas = '#barcodecanvas';
+				barcode.config.canvasg = '#barcodecanvasg';
+				barcode.setHandler(function(barcode) {
+					$('#result_div').html(barcode);
+					$('#result').val(barcode);
+				});
+				barcode.init();
+				$('#result').bind('DOMSubtreeModified', function(e) {
+					sound.play();
+				});
+			});
+		</script>
 		<div id="barcode">
 			<video id="barcodevideo" controls autoplay></video>
 			<canvas id="barcodecanvasg"></canvas>
 		</div>
 		<canvas id="barcodecanvas"></canvas>
 		<form class="ui form" action="" method="post">
-			<input id="result" name="result" type="text" placeholder="Code In here">
+			<input id="result" name="result" type="text">
 			<input class="ui primary button" type="submit" value="Submit">
 		</form>
 	<%}else{%>
