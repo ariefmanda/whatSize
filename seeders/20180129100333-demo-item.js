@@ -8,11 +8,8 @@ module.exports = {
       itemName: 'Adidas NMD PK OG',
       itemPrice: 3999999,
       itemStock: 20,
-<<<<<<< HEAD
       itemCode: '8352190398250',
-=======
       itemCode: 'NMDPKOG01',
->>>>>>> seed dummy ke table Item
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -22,11 +19,8 @@ module.exports = {
       itemName: 'Adidas YEEZY 350 V2',
       itemPrice: 6999999,
       itemStock: 15,
-<<<<<<< HEAD
       itemCode: '0281942917767',
-=======
       itemCode: 'YZY350V201',
->>>>>>> seed dummy ke table Item
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -36,11 +30,8 @@ module.exports = {
       itemName: 'Adidas Ultraboost 1.0',
       itemPrice: 4999999,
       itemStock: 40,
-<<<<<<< HEAD
       itemCode: '2113082957160',
-=======
       itemCode: 'UB1001',
->>>>>>> seed dummy ke table Item
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -50,11 +41,8 @@ module.exports = {
       itemName: 'Balenciaga Speed Trainer',
       itemPrice: 11999999,
       itemStock: 10,
-<<<<<<< HEAD
       itemCode: '39100990237848',
-=======
       itemCode: 'BCGSPT01',
->>>>>>> seed dummy ke table Item
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});

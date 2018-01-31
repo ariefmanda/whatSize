@@ -1,0 +1,24 @@
+<%- include('./partials/header')%>
+<table class="ui celled compact table">
+  <thead>
+    <th>Date (GMT)</th>
+    <th>Nama Staff</th>
+    <th>Jumlah Item</th>
+    <th>Action</th>
+  </thead>
+  <tbody>
+      <% for(let transaction of transactions) {%>
+        <tr>
+          <td><%= transaction.date %></td>
+          <td> <%= transaction.User.name %> </td>
+          <td><%= transaction.TransaksiItems.length%>
+          </td>
+          <td>
+              <a class "ui button mini" href="/transactions/<%= transaction.id %>/show">Show Data</a>
+          </td>
+        </tr>
+      <% } %>
+  </tbody>
+</table>
+<h3><a class="ui primary button" href="/transactions/add">Add Transaction</a></h3>
+<%- include('./partials/footer')%>

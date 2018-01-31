@@ -18,27 +18,12 @@
       padding-top: 10px;
     }
 
-    input,
-    select {
-      margin-bottom: 20px !important;
-    }
-
     form {
       max-width: 400px !important;
     }
 
     form>input:last-child {
       margin-top: 15px !important;
-    }
-
-    label {
-      line-height: 2em;
-      margin-bottom: 5px
-    }
-
-    h2 {
-      text-transform: uppercase;
-      font-weight: lighter
     }
   </style>
 </head>
@@ -49,20 +34,41 @@
       <img style="margin-right:10px;" src="https://hacktiv8.com/img/fox--md5--a9e377ae39495073d0e66db163fc8d9b.png"> WHAT
       <br>SIZE
     </div>
-    <a class="link item" href="/">Home</a>
-    <div class="right menu">
-      <a href="/users/add" class="ui item">
+    <a href="/" class="link item">
+    Home
+    </a>
+    <% if (login) { %>
+      <a href="/transactions" class="link item">
+      Transaction
+      </a>
+      <% if (user.role=1) { %>
+        <a href="/items" class="link item">
+        Stock
+      </a>
+        <a href="/brand" class="link item">
+        Data Master
+      </a>
+        <% } %>
+          <% } %>
+            <div class="right menu">
+              <a href="/search/barcode" class="ui item">
+                <i class="barcode icon"></i>
+              </a>
+
+              <% if (!login) { %>
+                <a href="/users/add" class="ui item">
         Register
       </a>
-        <% if (login) { %>
-          <a href="/auth/logout" class="ui item">
+                <% } %>
+                  <% if (login) { %>
+                    <a href="/auth/logout" class="ui item">
           Logout
         <% }else{ %>
           <a href="/auth/login" class="ui item">
           Login
         <% } %>
     </a>
-    </div>
+            </div>
   </div>
   <% if (typeof message !== 'undefined') { %>
     <div class="ui error message">

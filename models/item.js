@@ -12,8 +12,9 @@ module.exports = (sequelize, DataTypes) => {
   Item.associate = (models) => {
     Item.belongsTo(models.Brand);
     Item.belongsTo(models.Size);
+    Item.hasMany(models.TransaksiItem);
   }
-  
+
 
   // Instance Method
   // Model.prototype.someMethod = function () {..}

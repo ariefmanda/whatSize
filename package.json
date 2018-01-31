@@ -2,10 +2,15 @@
   "name": "whatsize",
   "version": "0.0.0",
   "private": true,
+  "main":"app.js",
   "scripts": {
-    "start": "./node_modules/nodemon/bin/nodemon.js ./bin/www"
+    "start": "NODE_ENV=development ./node_modules/nodemon/bin/nodemon.js ./bin/www"
+  },
+  "engines":{
+    "node":"8.9.1"
   },
   "dependencies": {
+    "barcode": "^0.1.0",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",

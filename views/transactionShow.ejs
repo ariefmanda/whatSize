@@ -1,0 +1,78 @@
+<%- include('./partials/header')%>
+  <link rel="stylesheet" href="/style.css">
+  <script type="text/javascript" src="/jquery.js"></script>
+  <script type="text/javascript" src="/barcode.js"></script>
+  <script type="text/javascript">
+    var sound = new Audio("barcode.wav");
+    $(document).ready(function() {
+      barcode.config.start = 0.1;
+      barcode.config.end = 0.9;
+      barcode.config.video = '#barcodevideo';
+      barcode.config.canvas = '#barcodecanvas';
+      barcode.config.canvasg = '#barcodecanvasg';
+      barcode.setHandler(function(barcode) {
+        $('#result').html(barcode);
+      });
+      barcode.init();
+      $('#result').bind('DOMSubtreeModified', function(e) {
+        sound.play();
+      });
+    });
+  </script>
+  <table class="ui celled compact table">
+    <thead>
+      <th>Date (GMT)</th>
+      <th>Name Item</th>
+      <th>Jumlah Item</th>
+      <th>Harga</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      <% for(let transaction of transactionItems) {%>
+        <tr>
+          <td>
+            <%= transaction.date %>
+          </td>
+          <td>
+            <%= transaction.Item.itemName %>
+          </td>
+          <td>
+            <%= transaction.jumlahItem %>
+          </td>
+          <td>
+            <%=(transaction.jumlahItem*transaction.Item.itemPrice) %>
+          </td>
+          <td>
+            <a href="/transactions/<%= transaction.TransaksiId%>/<%= transaction.id%>/delete">Delete</a>
+          </td>
+        </tr>
+        <% } %>
+    </tbody>
+  </table>
+  <h5>ASSIGN ITEM:</h5>
+  <br>
+  <div id="barcode">
+    <video id="barcodevideo" controls autoplay></video>
+    <canvas id="barcodecanvasg"></canvas>
+  </div>
+  <canvas id="barcodecanvas"></canvas>
+  <form action="/transactions/<%= transactionId%>/add" method="POST">
+    <div class="ui small form">
+      <div class="three fields">
+        <div class="field">
+          <label>Code Item</label>
+          <input id="result" name="codeItem" placeholder="Code Item" type="text">
+        </div>
+        <div class="field">
+          <label>Jumlah</label>
+          <input name="jumlahItem" placeholder="Jumlah" type="number">
+        </div>
+        <div class="field">
+          <label>Submit</label>
+          <input class="ui submit button" type="submit" value="Submit">
+        </div>
+      </div>
+    </div>
+  </form>
+  <h3><a class="ui primary button" href="/transactions">Back to Date Transaction</a></h3>
+  <%- include('./partials/footer')%>
