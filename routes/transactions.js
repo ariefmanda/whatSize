@@ -61,23 +61,28 @@ router.post('/:id/add', (req, res, next) => {
       itemCode: req.body.codeItem
     }
   }).then(item => {
-    if ((Number(item.itemStock) - Number(req.body.jumlahItem)) >= 0) {
-      models.Item.update({
-        itemStock: (Number(item.itemStock) - Number(req.body.jumlahItem))
-      }, {
-        where: {
-          id: item.id
-        }
-      }).then(items => {
-        models.TransaksiItem.create({TransaksiId: req.params.id, ItemId: item.id, jumlahItem: req.body.jumlahItem}).then(transactionItem => {
-          res.redirect(`/transactions/${req.params.id}/show`)
-        })
-      }).catch(err => {
-        next(err)
+    if(item){
+      if ((Number(item.itemStock) - Number(req.body.jumlahItem)) >= 0) {
+        models.Item.update({
+          itemStock: (Number(item.itemStock) - Number(req.body.jumlahItem))
+        }, {
+          where: {
+            id: item.id
+          }
+        }).then(items => {
+          models.TransaksiItem.create({TransaksiId: req.params.id, ItemId: item.id, jumlahItem: req.body.jumlahItem}).then(transactionItem => {
+            res.redirect(`/transactions/${req.params.id}/show`)
+          })
+        }).catch(err => {
+          next(err)
 
-      })
-    } else {
-      res.flash('Stock anda tidak ada')
+        })
+      } else {
+        res.flash('Stock anda tidak ada')
+        res.redirect(`/transactions/${req.params.id}/show`)
+      }
+    }else{
+      res.flash('Kode anda tidak ada')
       res.redirect(`/transactions/${req.params.id}/show`)
     }
   })

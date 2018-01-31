@@ -42,7 +42,7 @@
       </div>
       <div class="field">
         <label>Code Varian</label>
-        <input type="text" name="itemCode" value="<%=(data)? data.itemCode : barcode%>" disabled>
+        <input type="text" name="itemCode" value="<%=(data)? data.itemCode : barcode%>" readonly>
         <%if(barcode){%>
         <img src="http://bwipjs-api.metafloor.com/?bcid=ean13&text=<%=barcode%>"><br> copy for your barcode this varian
         <%}%>
