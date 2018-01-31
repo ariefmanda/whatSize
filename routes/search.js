@@ -8,7 +8,13 @@ router.get('/barcode', (req, res, next) => {
 })
 
 router.post('/barcode', (req, res, next) => {
-  let code = req.body.result
+  let code=''
+  if(req.body.result.length>12){
+    code = req.body.result.slice(0,-1)
+  }else{
+    code = req.body.result
+  }
+
   models.Item.find({
     include:[models.Brand,models.Size]
     ,where: {

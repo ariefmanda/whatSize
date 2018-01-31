@@ -2,31 +2,53 @@
   <div class="ui tall stacked segment">
     <h2><%=title%></h2>
     <form class="ui form" method="POST" action="">
-        <div class="field">
-          <label>Brand</label>
-          <input type="text" name="BrandId" value="<%=(data)? data.BrandId : ' '%>" required>
-        </div>
-        <div class="field">
-          <label>Size</label>
-          <input type="number" name="SizeId" value="<%=(data)? data.SizeId : ' '%>" required>
-        </div>
-        <div class="field">
-          <label>Name Varian</label>
-          <input type="text" name="itemName" value="<%=(data)? data.itemName : ' '%>" required>
-        </div>
-        <div class="field">
-          <label>Price</label>
-          <input type="text" name="itemPrice" value="<%=(data)? data.itemPrice : ' '%>" required>
-        </div>
-        <div class="field">
-          <label>Stock</label>
-          <input type="number" name="itemStock" value="<%=(data)? data.itemStock : ' '%>" required>
-        </div>
-        <div class="field">
-          <label>Code Varian</label>
-          <input type="text" name="itemCode" value="<%=(data)? data.itemCode : ' '%>" required>
-        </div>
+      <div class="field">
+        <label>Brand</label>
+        <select name="BrandId" class="ui search dropdown" required>
+            <%if(data){%>
+            <option value="%=data.BrandId%>"><%=data.brandName%></option>
+            <%}else{%>
+            <option value="">Select Brand</option>
+            <%}%>
+            <%brands.forEach(e=>{%>
+            <option value="<%=e.id%>"><%=e.brandName%></option>
+            <%})%>
+          </select>
+      </div>
+      <div class="field">
+        <label>Size</label>
+        <select name="SizeId" class="ui search dropdown" required>
+            <%if(data){%>
+              <option value="%=data.SizeId%>"><%=data.sizeName%></option>
+            <%}else{%>
+              <option value="">Select Size</option>
+            <%}%>
+            <%sizes.forEach(e=>{%>
+            <option value="<%=e.id%>"><%=e.sizeNumber%></option>
+            <%})%>
+          </select>
+      </div>
+      <div class="field">
+        <label>Name Varian</label>
+        <input type="text" name="itemName" value="<%=(data)? data.itemName : ' '%>" required>
+      </div>
+      <div class="field">
+        <label>Price</label>
+        <input type="text" name="itemPrice" value="<%=(data)? data.itemPrice : ' '%>" required>
+      </div>
+      <div class="field">
+        <label>Stock</label>
+        <input type="number" name="itemStock" value="<%=(data)? data.itemStock : ' '%>" required>
+      </div>
+      <div class="field">
+        <label>Code Varian</label>
+        <input type="text" name="itemCode" value="<%=(data)? data.itemCode : barcode%>" disabled>
+        <%if(barcode){%>
+        <img src="http://bwipjs-api.metafloor.com/?bcid=ean13&text=<%=barcode%>"><br> copy for your barcode this varian
+        <%}%>
+      </div>
       <button class="ui button" type="submit">Submit</button>
     </form>
   </div>
+
   <%- include('./partials/footer')%>

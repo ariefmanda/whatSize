@@ -1,11 +1,10 @@
-function barcode(text) {
-  res.flash = function(text) {
-    res.cookie('asu', text, { httpOnly: true })
+function barcode() {
+  let angka='1234567890'
+  let result=''
+  while(result.length<12){
+    result+=(angka[Math.floor(Math.random()*angka.length)])
   }
-  if (req.cookies.asu) {
-    res.locals.message = req.cookies.asu
-    res.clearCookie('asu')
-  }
-  next()
+  return Number(result)
 }
+
 module.exports = barcode;
