@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Brand </title>
+</head>
+
+<body>
+    <center>
+        <h1>Edit Brand</h1>
+        <form action="/brand/edit/<%=data.id%>" method="post">
+            <input type="text" placeholder="brand name" name="brandName" value="<%=data.brandName%>">
+            </br>
+            </br>
+            <button>Update</button>
+        </form>
+    </center>
+</body>
+</html>
