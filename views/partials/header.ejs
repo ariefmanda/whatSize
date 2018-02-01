@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>
+  <%= title %>
+</title>
+
+<head>
+  <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css" async />
+  <style>
+    body {
+      width: 80%;
+      float: none;
+      margin: auto;
+      background: #efefef;
+      padding-top: 10px;
+    }
+
+    form {
+      max-width: 400px !important;
+    }
+
+    form>input:last-child {
+      margin-top: 15px !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ui large menu">
+    <div class="item">
+      <img style="margin-right:10px;" src="https://hacktiv8.com/img/fox--md5--a9e377ae39495073d0e66db163fc8d9b.png"> WHAT
+      <br>SIZE
+    </div>
+    <a href="/" class="link item">
+    Home
+    </a>
+    <% if (login) { %>
+    <% if (user.role==1) { %>
+      <a href="/users" class="link item">
+      User
+    </a>
+      <% } %>
+      <% } %>
+    <% if (login) { %>
+      <a href="/transactions" class="link item">
+      Transaction
+      </a>
+      <% if (user.role==1) { %>
+        <a href="/items" class="link item">
+        Stock
+      </a>
+        <a href="/brand" class="link item">
+        Data Master
+      </a>
+        <% } %>
+          <% } %>
+            <div class="right menu">
+              <a href="/search/barcode" class="ui item">
+                <i class="barcode icon"></i>
+              </a>
+
+              <% if (!login) { %>
+                <a href="/users/add" class="ui item">
+        Register
+      </a>
+                <% } %>
+                  <% if (login) { %>
+                    <a href="/auth/logout" class="ui item">
+          Logout
+        <% }else{ %>
+          <a href="/auth/login" class="ui item">
+          Login
+        <% } %>
+    </a>
+            </div>
+  </div>
+  <% if (typeof message !== 'undefined') { %>
+    <div class="ui error message">
+      <%= message %>
+    </div>
+    <% } %>

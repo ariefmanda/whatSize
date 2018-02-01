@@ -1,0 +1,33 @@
+<%- include('./partials/header')%>
+<div class="ui tall stacked segment">
+<table class="ui celled compact table">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Name</th>
+      <th>Role</th>
+      <th>status</th>
+      <th>Email</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <%users.forEach((data,no) => {%>
+      <td><%=no+1%></td>
+      <td><%=data.name%></td>
+      <td><%=data.getRole()%></td>
+      <td><%=data.getStatus()%></td>
+      <td><%=data.email%></td>
+      <td>
+        <% if (data.role==0) { %>
+        <a href="/users/change/<%=data.id%>">Change to Admin</a>
+        <% }else if (data.role==1) { %>
+        <a href="/users/changeU/<%=data.id%>">Change to User</a></td>
+        <% } %>
+    </tr>
+    <%})%>
+  </tbody>
+</table>
+</div>
+<%- include('./partials/footer')%>
