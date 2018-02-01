@@ -38,13 +38,32 @@ router.get('/:id/show', (req, res, next) => {
   })
 })
 router.get('/:idTransaksi/:id/delete', (req, res, next) => {
-  models.TransaksiItem.destroy({
-    where: {
-      id: req.params.id
-    }
-  }).then(transactionItems => {
-    res.flash('Data sudah dihapus')
-    res.redirect(`/transactions/${req.params.idTransaksi}/show`)
+  models.TransaksiItem.findById(req.params.id).then(transaction=>{
+    models.Item.findById(transaction.ItemId).then(item=>{
+      let stock = item.itemStock + transaction.jumlahItem
+      models.Item.update({
+        itemStock:stock
+      },{
+        where:{
+          id:item.id
+        }
+      }).then(()=>{
+        models.TransaksiItem.destroy({
+          where: {
+            id: req.params.id
+          }
+        }).then(transactionItems => {
+          res.flash('Data sudah dihapus')
+          res.redirect(`/transactions/${req.params.idTransaksi}/show`)
+        }).catch(err => {
+          next(err)
+        })
+      }).catch(err => {
+        next(err)
+      })
+    }).catch(err => {
+      next(err)
+    })
   }).catch(err => {
     next(err)
   })

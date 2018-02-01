@@ -1,5 +1,5 @@
 <%- include('./partials/header')%>
-<h3><a class="ui right floated primary button" href="/items/add">Add Item</a></h3><br><br>
+<div class="ui tall stacked segment">
 <table class="ui celled compact table">
   <thead>
     <tr>
@@ -19,9 +19,15 @@
       <td><%=data.getRole()%></td>
       <td><%=data.getStatus()%></td>
       <td><%=data.email%></td>
-      <td><a href="/users/change/<%=data.id%>">Change to Admin</a> || <a href="/users/changeU/<%=data.id%>">Change to User</a></td>
+      <td>
+        <% if (data.role==0) { %>
+        <a href="/users/change/<%=data.id%>">Change to Admin</a>
+        <% }else if (data.role==1) { %>
+        <a href="/users/changeU/<%=data.id%>">Change to User</a></td>
+        <% } %>
     </tr>
     <%})%>
   </tbody>
 </table>
+</div>
 <%- include('./partials/footer')%>
