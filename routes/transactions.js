@@ -11,6 +11,7 @@ router.get('/', (req, res, next) => {
   models.Transaksi.findAll({
     include: [models.TransaksiItem, models.User]
   }).then(transactions => {
+    // res.send(transactions)
     transactions = transactions.map(e => {
       e.date = moment(e.createdAt).format('DD-MM-YYYY')
       return e
@@ -22,7 +23,7 @@ router.get('/', (req, res, next) => {
 })
 router.get('/:id/show', (req, res, next) => {
   models.TransaksiItem.findAll({
-    include:[models.Item],
+    include:[{model:models.Item, include:[models.Size,models.Brand]}],
     where: {
       TransaksiId: req.params.id
     }
@@ -58,7 +59,7 @@ router.get('/add', (req, res, next) => {
 router.post('/:id/add', (req, res, next) => {
   models.Item.find({
     where: {
-      itemCode: req.body.codeItem
+      itemCode: req.body.codeItem.slice(0,-1)
     }
   }).then(item => {
     if(item){

@@ -1,6 +1,6 @@
 #barcodevideo, #barcodecanvas, #barcodecanvasg {
 	height: 400px;
-}	
+}
 
 #barcodecanvasg {
 	position: absolute;
@@ -15,7 +15,7 @@
 
 #barcode {
 	position: relative;
-}	
+}
 
 #barcodecanvas {
 	display: none;

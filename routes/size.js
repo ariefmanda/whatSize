@@ -3,7 +3,7 @@ var router = express.Router();
 var models = require('../models');
 let title="Size"
 router.get('/', function(req, res, next) {
-  models.Size.findAll({}).then((result) => {
+  models.Size.findAll().then((result) => {
     res.render('size', {data: result,title,dataEdit:null})
   }).catch(err => {
     next(err)
@@ -50,7 +50,15 @@ router.get('/delete/:id', (req, res, next) => {
       id: req.params.id
     }
   }).then(() => {
+  models.Item.destroy({
+    where:{
+      SizeId:req.params.id
+    }
+  }).then(()=>{
     res.redirect('/size')
+  }).catch(err => {
+    next(err)
+  })
   }).catch(err => {
     next(err)
   })

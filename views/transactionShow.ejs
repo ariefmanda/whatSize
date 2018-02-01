@@ -2,7 +2,9 @@
   <table class="ui celled compact table">
     <thead>
       <th>Date (GMT)</th>
+      <th>Name Brand</th>
       <th>Name Item</th>
+      <th>Size Number</th>
       <th>Jumlah Item</th>
       <th>Harga</th>
       <th>Action</th>
@@ -14,7 +16,13 @@
             <%= transaction.date %>
           </td>
           <td>
+            <%= transaction.Item.Brand.brandName %>
+          </td>
+          <td>
             <%= transaction.Item.itemName %>
+          </td>
+          <td>
+            <%= transaction.Item.Size.sizeNumber %>
           </td>
           <td>
             <%= transaction.jumlahItem %>
@@ -58,10 +66,10 @@
   <canvas id="barcodecanvas"></canvas>
   <form action="/transactions/<%= transactionId%>/add" method="POST">
     <div class="ui small form">
-      <div class="three fields">
+      <div class="fields">
         <div class="field">
           <label>Code Item</label>
-          <input id="result" name="codeItem" placeholder="Code Item" type="text" readonly>
+          <input id="result" name="codeItem" placeholder="Code Item" type="text" style="font-size:1em">
         </div>
         <div class="field">
           <label>Jumlah</label>

@@ -7,16 +7,16 @@
     <table class="ui celled compact table">
         <thead>
             <tr>
-                <th>Brand Id</th>
+                <th>No</th>
                 <th>Brand Name</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <%data.forEach(data => {%>
+                <%data.forEach((data,no) => {%>
                     <td>
-                        <%=data.id%>
+                        <%=no+1%>
                     </td>
                     <td>
                         <%=data.brandName%>

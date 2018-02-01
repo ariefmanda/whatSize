@@ -58,7 +58,15 @@ router.get('/delete/:id', (req, res, next) => {
       id: req.params.id
     }
   }).then(() => {
-    res.redirect('/brand')
+    models.Item.destroy({
+      where:{
+        BrandId:req.params.id
+      }
+    }).then(()=>{
+      res.redirect('/brand')
+    }).catch(err => {
+      next(err)
+    })
   }).catch(err => {
     next(err)
   })

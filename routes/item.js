@@ -5,7 +5,9 @@ var title = 'Items'
 var barcode = require('../helpers/barcode')
 /* GET item. */
 router.get('/', function(req, res, next) {
-  models.Item.findAll({}).then((result) => {
+  models.Item.findAll({
+    include:[models.Brand,models.Size]
+  }).then((result) => {
     // res.send(result)
     res.render('item', {
       data: result,
@@ -106,7 +108,15 @@ router.get('/delete/:id', (req, res, next) => {
       id: req.params.id
     }
   }).then(() => {
+    models.TransaksiItem.destroy({
+      where:{
+        ItemId:req.params.id
+      }
+    }).then(()=>{
     res.redirect('/items')
+    }).catch(err => {
+      next(err)
+    })
   }).catch(err => {
     next(err)
   })

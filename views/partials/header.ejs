@@ -38,10 +38,17 @@
     Home
     </a>
     <% if (login) { %>
+    <% if (user.role==1) { %>
+      <a href="/users" class="link item">
+      User
+    </a>
+      <% } %>
+      <% } %>
+    <% if (login) { %>
       <a href="/transactions" class="link item">
       Transaction
       </a>
-      <% if (user.role=1) { %>
+      <% if (user.role==1) { %>
         <a href="/items" class="link item">
         Stock
       </a>

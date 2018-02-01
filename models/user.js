@@ -40,11 +40,36 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    password: DataTypes.STRING
+    password: {
+      type:DataTypes.STRING,
+      validate:{
+        len:{
+          args: [5, 255],
+          msg: 'Password at least 5 character !!'
+        }
+      }
+    }
   });
-
+  User.prototype.getRole=function(){
+    let a=''
+    if(this.role==1){
+      a="admin"
+    }else{
+      a="staff penjualan"
+    }
+    return a
+  }
+  User.prototype.getStatus=function(){
+    let a=''
+    if(this.status==1){
+      a="Tervalidasi"
+    }else{
+      a="Belum tervalidasi"
+    }
+    return a
+  }
   User.associate = function(models) {
-    User.hasMany(models.Transaksi)
+    User.hasMany(models.Transaksi , { onDelete: 'cascade' })
   }
   return User;
 };

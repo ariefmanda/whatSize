@@ -3,8 +3,47 @@ var router = express.Router();
 const models = require('../models')
 const email = require('../helpers/email');
 const encrypt = require('../helpers/encrypt');
+const sessionHelpher = require('../helpers/authSession');
+const adminHelpher = require('../helpers/adminSession');
 let title = 'User'
 /* GET home page. */
+router.get('/',sessionHelpher,adminHelpher,function(req,res,next){
+  models.User.findAll().then(users=>{
+    res.render('user',{
+      title,users
+    })
+  }).catch(err=>{
+    next(err)
+  })
+})
+router.get('/change/:id',sessionHelpher,adminHelpher,function(req,res,next){
+  models.User.update({
+    role:1
+  },{
+    where:{
+      id:req.params.id
+    }
+  })
+  .then(users=>{
+    res.redirect('/users')
+  }).catch(err=>{
+    next(err)
+  })
+})
+router.get('/changeU/:id',sessionHelpher,adminHelpher,function(req,res,next){
+  models.User.update({
+    role:0
+  },{
+    where:{
+      id:req.params.id
+    }
+  })
+  .then(users=>{
+    res.redirect('/users')
+  }).catch(err=>{
+    next(err)
+  })
+})
 router.get('/add', function(req, res, next) {
   res.render('register',{
     title

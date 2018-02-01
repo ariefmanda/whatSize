@@ -3,9 +3,9 @@
 <table class="ui celled compact table">
   <thead>
     <tr>
-      <th>Item Id</th>
-      <th>Brand Id</th>
-      <th>Size Id</th>
+      <th>No</th>
+      <th>Brand</th>
+      <th>Size</th>
       <th>Item Name</th>
       <th>Item Price</th>
       <th>Item Stock</th>
@@ -15,10 +15,10 @@
   </thead>
   <tbody>
     <tr>
-      <%data.forEach(data => {%>
-      <td><%=data.id%></td>
-      <td><%=data.BrandId%></td>
-      <td><%=data.SizeId%></td>
+      <%data.forEach((data,no) => {%>
+      <td><%=no+1%></td>
+      <td><%=data.Brand.brandName%></td>
+      <td><%=data.Size.sizeNumber%></td>
       <td><%=data.itemName%></td>
       <td><%=data.itemPrice%></td>
       <td><%=data.itemStock%></td>

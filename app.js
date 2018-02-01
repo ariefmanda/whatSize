@@ -38,9 +38,9 @@ app.use(function(req,res,next){
 app.use('/auth', auth);
 app.use('/users', users);
 app.use('/transactions',sessionHelpher, transactions);
-app.use('/items', item);
-app.use('/brand', brand);
-app.use('/size', size);
+app.use('/items',sessionHelpher,adminHelpher, item);
+app.use('/brand',sessionHelpher,adminHelpher, brand);
+app.use('/size',sessionHelpher,adminHelpher, size);
 app.use('/search', search);
 app.use('/', index);
 

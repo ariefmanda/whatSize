@@ -7,7 +7,7 @@
     "start": "NODE_ENV=development ./node_modules/nodemon/bin/nodemon.js ./bin/www"
   },
   "engines":{
-    "node":"8.9.1"
+    "node":"9.3.0"
   },
   "dependencies": {
     "barcode": "^0.1.0",
