@@ -2,14 +2,15 @@
   "name": "whatsize",
   "version": "0.0.0",
   "private": true,
-  "main":"app.js",
+  "main": "app.js",
   "scripts": {
     "start": "NODE_ENV=development node ./bin/www"
   },
-  "engines":{
-    "node":"9.3.0"
+  "engines": {
+    "node": "9.3.0"
   },
   "dependencies": {
+    "apicache": "^1.2.0",
     "barcode": "^0.1.0",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
@@ -17,11 +18,13 @@
     "ejs": "~2.5.7",
     "express": "~4.15.5",
     "express-session": "^1.15.6",
+    "isemail": "^3.1.0",
     "moment": "^2.20.1",
     "morgan": "~1.9.0",
     "nodemailer": "^4.4.2",
     "nodemon": "^1.14.11",
     "pg": "6",
+    "reload": "^2.2.2",
     "sequelize": "^4.32.2",
     "sequelize-cli": "^3.2.0",
     "serve-favicon": "~2.4.5"

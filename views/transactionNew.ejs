@@ -1,42 +1,10 @@
 <%- include('./partials/header')%>
-  <table class="ui celled compact table">
-    <thead>
-      <th>Date (GMT)</th>
-      <th>Name Brand</th>
-      <th>Name Item</th>
-      <th>Size Number</th>
-      <th>Jumlah Item</th>
-      <th>Harga</th>
-      <th>Action</th>
-    </thead>
-    <tbody>
-      <% for(let transaction of transactionItems) {%>
-        <tr>
-          <td>
-            <%= transaction.date %>
-          </td>
-          <td>
-            <%= transaction.Item.Brand.brandName %>
-          </td>
-          <td>
-            <%= transaction.Item.itemName %>
-          </td>
-          <td>
-            <%= transaction.Item.Size.sizeNumber %>
-          </td>
-          <td>
-            <%= transaction.jumlahItem %>
-          </td>
-          <td>
-            <%=(transaction.jumlahItem*transaction.Item.itemPrice) %>
-          </td>
-          <td>
-            <a href="/transactions/<%= transaction.TransaksiId%>/<%= transaction.id%>/delete" onclick="return confirm('Are you sure you want to delete this?');">Delete</a>
-          </td>
-        </tr>
-        <% } %>
-    </tbody>
-  </table>
+<div class="ui progress">
+<div class="bar">
+  <div class="progress"></div>
+</div>
+<div class="label">Not Found Your Transactions</div>
+</div>
   <h5>ASSIGN ITEM:</h5>
   <br>
   <link rel="stylesheet" href="/style.css">
@@ -64,7 +32,7 @@
     <canvas id="barcodecanvasg"></canvas>
   </div>
   <canvas id="barcodecanvas"></canvas>
-  <form action="/transactions/<%= transactionId%>/add" method="POST">
+  <form action="" method="POST">
     <div class="ui small form">
       <div class="fields">
         <div class="field">

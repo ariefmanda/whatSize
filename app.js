@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const reload = require('reload');
 const session = require('express-session');
 const errorHelpher = require('./helpers/errorhandler');
 const messageHelpher = require('./helpers/flashMessage');
@@ -34,7 +35,6 @@ app.use(function(req,res,next){
   res.locals.user=req.session.user
   next()
 })
-
 app.use('/auth', auth);
 app.use('/users', users);
 app.use('/transactions',sessionHelpher, transactions);
@@ -43,7 +43,6 @@ app.use('/brand',sessionHelpher,adminHelpher, brand);
 app.use('/size',sessionHelpher,adminHelpher, size);
 app.use('/search', search);
 app.use('/', index);
-
 // catch 404 and forward to error handler
 app.use('*',(req,res,next)=>{
   res.flash('Situs tidak ditemukan')

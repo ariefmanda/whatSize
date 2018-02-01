@@ -23,7 +23,7 @@
                     </td>
                     <td>
                         <a href="/brand/edit/<%=data.id%>">edit</a> |
-                        <a href="/brand/delete/<%=data.id%>">delete</a>
+                        <a href="/brand/delete/<%=data.id%>" onclick="return confirm('Are you sure you want to delete this?');">delete</a>
                     </td>
             </tr>
             <%})%>

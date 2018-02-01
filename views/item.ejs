@@ -24,7 +24,7 @@
       <td><%=data.itemPrice%></td>
       <td><%=data.itemStock%></td>
       <td><%=data.itemCode%></td>
-      <td><a href="/items/edit/<%=data.id%>">edit</a> | <a href="/items/delete/<%=data.id%>">delete</a></td>
+      <td><a href="/items/edit/<%=data.id%>">edit</a> | <a href="/items/delete/<%=data.id%>" onclick="return confirm('Are you sure you want to delete this?');">delete</a></td>
     </tr>
     <%})%>
   </tbody>

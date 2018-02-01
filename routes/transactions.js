@@ -12,6 +12,13 @@ router.get('/', (req, res, next) => {
     include: [models.TransaksiItem, models.User]
   }).then(transactions => {
     // res.send(transactions)
+    transactions = transactions.filter(e=>{
+      let bol=true
+      if(e.TransaksiItems.length<1){
+        bol=false
+      }
+      return bol
+    })
     transactions = transactions.map(e => {
       e.date = moment(e.createdAt).format('DD-MM-YYYY')
       return e
@@ -20,6 +27,52 @@ router.get('/', (req, res, next) => {
   }).catch(err => {
     next(err)
   })
+})
+router.get('/new', (req, res, next) => {
+  res.render('transactionNew',{
+    title
+  })
+})
+router.post('/new', (req, res, next) => {
+  console.log(req.body);
+  if(Number(req.body.jumlahItem)>0){
+    models.Item.find({
+      where: {
+        itemCode: req.body.codeItem.slice(0,-1)
+      }
+    }).then(item => {
+      if(item){
+        if ((Number(item.itemStock) - Number(req.body.jumlahItem)) >= 0) {
+          models.Transaksi.create({UserId: req.session.user.id}).then(transaction => {
+            models.Item.update({
+              itemStock: (Number(item.itemStock) - Number(req.body.jumlahItem))
+            }, {
+              where: {
+                id: item.id
+              }
+            }).then(items => {
+              models.TransaksiItem.create({TransaksiId: transaction.id, ItemId: item.id, jumlahItem: req.body.jumlahItem}).then(transactionItem => {
+                res.redirect(`/transactions/${transaction.id}/show`)
+              })
+            }).catch(err => {
+              next(err)
+            })
+          }).catch(err => {
+            next(err)
+          })
+        } else {
+          res.flash('Stock anda tidak ada')
+          res.redirect(`/transactions/new`)
+        }
+      }else{
+        res.flash('Kode anda tidak ada')
+        res.redirect(`/transactions/new`)
+      }
+    })
+  }else{
+    res.flash('Jumlah yang anda masukkan harus lebih dari 0')
+    res.redirect(`/transactions/new`)
+  }
 })
 router.get('/:id/show', (req, res, next) => {
   models.TransaksiItem.findAll({
@@ -68,43 +121,43 @@ router.get('/:idTransaksi/:id/delete', (req, res, next) => {
     next(err)
   })
 })
-router.get('/add', (req, res, next) => {
-  models.Transaksi.create({UserId: req.session.user.id}).then(transaction => {
-    res.redirect(`/transactions/${transaction.id}/show`)
-  }).catch(err => {
-    next(err)
-  })
-})
-router.post('/:id/add', (req, res, next) => {
-  models.Item.find({
-    where: {
-      itemCode: req.body.codeItem.slice(0,-1)
-    }
-  }).then(item => {
-    if(item){
-      if ((Number(item.itemStock) - Number(req.body.jumlahItem)) >= 0) {
-        models.Item.update({
-          itemStock: (Number(item.itemStock) - Number(req.body.jumlahItem))
-        }, {
-          where: {
-            id: item.id
-          }
-        }).then(items => {
-          models.TransaksiItem.create({TransaksiId: req.params.id, ItemId: item.id, jumlahItem: req.body.jumlahItem}).then(transactionItem => {
-            res.redirect(`/transactions/${req.params.id}/show`)
-          })
-        }).catch(err => {
-          next(err)
 
-        })
-      } else {
-        res.flash('Stock anda tidak ada')
+router.post('/:id/add', (req, res, next) => {
+  if(Number(req.body.jumlahItem)>0){
+    models.Item.find({
+      where: {
+        itemCode: req.body.codeItem.slice(0,-1)
+      }
+    }).then(item => {
+      if(item){
+        if ((Number(item.itemStock) - Number(req.body.jumlahItem)) >= 0) {
+          models.Item.update({
+            itemStock: (Number(item.itemStock) - Number(req.body.jumlahItem))
+          }, {
+            where: {
+              id: item.id
+            }
+          }).then(items => {
+            models.TransaksiItem.create({TransaksiId: req.params.id, ItemId: item.id, jumlahItem: req.body.jumlahItem}).then(transactionItem => {
+              res.redirect(`/transactions/${req.params.id}/show`)
+            })
+          }).catch(err => {
+            next(err)
+
+          })
+        } else {
+          res.flash('Stock anda tidak ada')
+          res.redirect(`/transactions/${req.params.id}/show`)
+        }
+      }else{
+        res.flash('Kode anda tidak ada')
         res.redirect(`/transactions/${req.params.id}/show`)
       }
-    }else{
-      res.flash('Kode anda tidak ada')
-      res.redirect(`/transactions/${req.params.id}/show`)
-    }
-  })
+    })
+  }else{
+    res.flash('Jumlah yang anda masukkan harus lebih dari 0')
+    res.redirect(`/transactions/${req.params.id}/show`)
+  }
+
 })
 module.exports = router;
